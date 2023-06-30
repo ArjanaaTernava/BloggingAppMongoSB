@@ -32,5 +32,9 @@ public class Post {
     @DBRef
     private Category category;
 
-
+    public static Post createWithId(String id) {
+        return Post.builder()
+                .id(id)
+                .build();
+    }
 }
