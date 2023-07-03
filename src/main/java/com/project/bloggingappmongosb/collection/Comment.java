@@ -1,6 +1,8 @@
 package com.project.bloggingappmongosb.collection;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;

@@ -3,6 +3,7 @@ package com.project.bloggingappmongosb.controller;
 
 import com.project.bloggingappmongosb.collection.Tag;
 import com.project.bloggingappmongosb.service.TagService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class TagController {
     }
 
     @PostMapping
-    public Tag saveTag(@RequestBody Tag Tag){
+    public Tag saveTag(@Valid @RequestBody Tag Tag){
         return tagService.createTag(Tag);
     }
 
@@ -40,7 +41,7 @@ public class TagController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Tag> updateTag(@PathVariable String id, @RequestBody Tag Tag){
+    public ResponseEntity<Tag> updateTag(@PathVariable String id, @Valid @RequestBody Tag Tag){
         return tagService.updateTag(id,Tag);
     }
 }

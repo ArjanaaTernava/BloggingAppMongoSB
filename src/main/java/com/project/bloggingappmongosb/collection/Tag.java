@@ -1,6 +1,7 @@
 package com.project.bloggingappmongosb.collection;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -15,7 +16,9 @@ import java.util.List;
 public class Tag {
     @Id
     private String id;
+    @NotBlank
     private String tagName;
+    @NotBlank
     private String description;
     @DBRef
     private List<Post> posts;

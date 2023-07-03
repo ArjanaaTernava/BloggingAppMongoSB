@@ -3,6 +3,7 @@ package com.project.bloggingappmongosb.controller;
 
 import com.project.bloggingappmongosb.collection.User;
 import com.project.bloggingappmongosb.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User saveUser(@RequestBody User User){
+    public User saveUser(@Valid @RequestBody User User){
         return userService.createUser(User);
     }
 
@@ -40,7 +41,7 @@ public class UserController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User User){
+    public ResponseEntity<User> updateUser(@PathVariable String id,@Valid @RequestBody User User){
         return userService.updateUser(id,User);
     }
 }

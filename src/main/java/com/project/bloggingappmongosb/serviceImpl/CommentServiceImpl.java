@@ -1,7 +1,8 @@
-package com.project.bloggingappmongosb.service;
+package com.project.bloggingappmongosb.serviceImpl;
 
 import com.project.bloggingappmongosb.collection.Comment;
 import com.project.bloggingappmongosb.exception.NotFoundException;
+import com.project.bloggingappmongosb.service.CommentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CommentServiceImpl implements CommentService{
+public class CommentServiceImpl implements CommentService {
     private final MongoTemplate mongoTemplate;
     private final static Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
 

@@ -3,6 +3,7 @@ package com.project.bloggingappmongosb.controller;
 
 import com.project.bloggingappmongosb.collection.Comment;
 import com.project.bloggingappmongosb.service.CommentService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public Comment saveComment(@RequestBody Comment Comment){
+    public Comment saveComment(@Valid @RequestBody Comment Comment){
         return commentService.createComment(Comment);
     }
 
@@ -39,7 +40,7 @@ public class CommentController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Comment> updateComment(@PathVariable String id, @RequestBody Comment Comment){
+    public ResponseEntity<Comment> updateComment(@PathVariable String id, @Valid @RequestBody Comment Comment){
         return commentService.updateComment(id,Comment);
     }
 }

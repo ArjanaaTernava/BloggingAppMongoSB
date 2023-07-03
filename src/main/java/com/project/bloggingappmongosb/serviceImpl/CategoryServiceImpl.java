@@ -1,7 +1,8 @@
-package com.project.bloggingappmongosb.service;
+package com.project.bloggingappmongosb.serviceImpl;
 
 import com.project.bloggingappmongosb.collection.Category;
 import com.project.bloggingappmongosb.exception.NotFoundException;
+import com.project.bloggingappmongosb.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
     private final MongoTemplate mongoTemplate;
     private final static Logger LOGGER = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
@@ -31,16 +32,14 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Category getCategoryById(String id) {
-        Query query = new Query(Criteria.where("_id").is(id));
-        Category category = mongoTemplate.findById(id, Category.class);
-
-        if (category == null) {
+        try{
+            Category category = mongoTemplate.findById(id, Category.class);
+            return category;
+        }catch (NotFoundException exception){
             NotFoundException notFoundException = new NotFoundException("Category" + id + "does not exist");
             LOGGER.error("Category with id {} not found, class: {}", id, CategoryServiceImpl.class, notFoundException);
             throw notFoundException;
         }
-
-        return category;
     }
 
     @Override

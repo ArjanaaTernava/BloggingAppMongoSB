@@ -3,6 +3,7 @@ package com.project.bloggingappmongosb.controller;
 
 import com.project.bloggingappmongosb.collection.Category;
 import com.project.bloggingappmongosb.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public Category saveCategory(@RequestBody Category Category){
+    public Category saveCategory(@Valid @RequestBody Category Category){
         return categoryService.createCategory(Category);
     }
 
@@ -34,12 +35,12 @@ public class CategoryController {
     }
 
     @GetMapping("/all")
-    public List<Category> getCategorys(){
+    public List<Category> getCategories(){
         return categoryService.getCategories();
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable String id, @RequestBody Category Category){
+    public ResponseEntity<Category> updateCategory(@PathVariable String id,@Valid @RequestBody Category Category){
         return categoryService.updateCategory(id,Category);
     }
 }

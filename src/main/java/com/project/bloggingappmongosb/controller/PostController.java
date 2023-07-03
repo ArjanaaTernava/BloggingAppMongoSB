@@ -3,6 +3,7 @@ package com.project.bloggingappmongosb.controller;
 
 import com.project.bloggingappmongosb.collection.Post;
 import com.project.bloggingappmongosb.service.PostService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class PostController {
     }
 
     @PostMapping
-    public Post savePost(@RequestBody Post post){
+    public Post savePost(@Valid @RequestBody Post post){
         return postService.createPost(post);
     }
 
@@ -39,7 +40,7 @@ public class PostController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable String id, @RequestBody Post post){
+    public ResponseEntity<Post> updatePost(@PathVariable String id,@Valid @RequestBody Post post){
       return postService.updatePost(id,post);
     }
 }
